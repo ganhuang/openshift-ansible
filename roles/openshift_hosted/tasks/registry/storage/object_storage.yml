@@ -11,6 +11,7 @@
   when: openshift.hosted.registry.storage.provider in ['azure_blob', 'swift']
 
 - include: s3.yml
+  static: no
   when: openshift.hosted.registry.storage.provider == 's3'
 
 - name: Test if docker registry config secret exists
