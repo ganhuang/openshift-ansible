@@ -12,6 +12,7 @@
 
 - name: Configure the nofile limits for haproxy
   ini_file:
+    create: true
     dest: /etc/systemd/system/haproxy.service.d/limits.conf
     section: Service
     option: LimitNOFILE
