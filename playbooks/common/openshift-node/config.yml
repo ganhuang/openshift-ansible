@@ -62,12 +62,6 @@
   roles:
   - role: openshift_common
   - role: openshift_clock
-  - role: openshift_docker
-  - role: openshift_node_certificates
-    openshift_ca_host: "{{ groups.oo_first_master.0 }}"
-  - role: openshift_cloud_provider
-  - role: openshift_node_dnsmasq
-    when: openshift.common.use_dnsmasq | bool
   - role: os_firewall
     os_firewall_allow:
     - service: Kubernetes kubelet
@@ -83,6 +77,12 @@
     - service: OpenShift OVS sdn
       port: 4789/udp
       when: openshift.node.use_openshift_sdn | bool
+  - role: openshift_docker
+  - role: openshift_node_certificates
+    openshift_ca_host: "{{ groups.oo_first_master.0 }}"
+  - role: openshift_cloud_provider
+  - role: openshift_node_dnsmasq
+    when: openshift.common.use_dnsmasq | bool
   - role: openshift_node
 
 - name: Configure nodes
@@ -101,12 +101,6 @@
   roles:
   - role: openshift_common
   - role: openshift_clock
-  - role: openshift_docker
-  - role: openshift_node_certificates
-    openshift_ca_host: "{{ groups.oo_first_master.0 }}"
-  - role: openshift_cloud_provider
-  - role: openshift_node_dnsmasq
-    when: openshift.common.use_dnsmasq | bool
   - role: os_firewall
     os_firewall_allow:
     - service: Kubernetes kubelet
@@ -122,6 +116,12 @@
     - service: OpenShift OVS sdn
       port: 4789/udp
       when: openshift.node.use_openshift_sdn | bool
+  - role: openshift_docker
+  - role: openshift_node_certificates
+    openshift_ca_host: "{{ groups.oo_first_master.0 }}"
+  - role: openshift_cloud_provider
+  - role: openshift_node_dnsmasq
+    when: openshift.common.use_dnsmasq | bool
   - role: openshift_node
 
 - name: Additional node config
