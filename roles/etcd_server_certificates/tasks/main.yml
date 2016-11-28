@@ -1,6 +1,6 @@
 ---
 - name: Install etcd
-  action: "{{ ansible_pkg_mgr }} name=etcd state=present"
+  action: "{{ ansible_pkg_mgr }} name=etcd3 state=present"
   when: not etcd_is_containerized | bool
 
 - name: Check status of etcd certificates
