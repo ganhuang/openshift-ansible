@@ -1,5 +1,5 @@
 - name: Install etcd for etcdctl
-  action: "{{ ansible_pkg_mgr }} name=etcd state=present"
+  action: "{{ ansible_pkg_mgr }} name=etcd3 state=present"
   when: not openshift.common.is_atomic | bool
 
 - name: Configure etcd profile.d alises
