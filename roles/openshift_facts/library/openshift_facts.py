@@ -1635,6 +1635,7 @@ def set_proxy_facts(facts):
             # We always add local dns domain and ourselves no matter what
             common['no_proxy'].append('.' + common['dns_domain'])
             common['no_proxy'].append(common['hostname'])
+            common['no_proxy'].append('docker-registry.default.svc')
             common['no_proxy'] = ','.join(sort_unique(common['no_proxy']))
         facts['common'] = common
     return facts

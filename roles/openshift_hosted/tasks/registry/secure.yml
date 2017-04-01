@@ -54,6 +54,7 @@
     hostnames:
     - "{{ docker_registry_service_ip.results.clusterip }}"
     - docker-registry.default.svc.cluster.local
+    - docker-registry.default.svc
     - "{{ docker_registry_route_hostname }}"
     cert: "{{ openshift_master_config_dir }}/registry.crt"
     key: "{{ openshift_master_config_dir }}/registry.key"
