@@ -5,12 +5,27 @@
 - include: udev_workaround.yml
   when: docker_udev_workaround | default(False) | bool
 
-- name: Use Package Docker if Requested
-  include: package_docker.yml
-  when: openshift.docker.use_system_container is not defined or openshift.docker.use_system_container == False
+- debug:
+    var=openshift.docker.use_system_container
+
+- debug:
+    var=openshift.docker.systemcontainer_image_registry_override
+
+- debug:
+    var=openshift.docker.service_name
+
+- debug:
+    var="{{ openshift.docker.use_system_container }}""
+
+- debug:
+    var="{{ openshift.docker.systemcontainer_image_registry_override }}"
+
+- debug:
+    var="{{ openshift.docker.service_name }}"
+
+    #- name: Use Package Docker if Requested
+    #  include: package_docker.yml
+    #  when: openshift.docker.use_system_container is not defined or openshift.docker.use_system_container == False
 
 - name: Use System Container Docker if Requested
   include: systemcontainer_docker.yml
-  when:
-  - openshift.docker.use_system_container is defined
-  - openshift.docker.use_system_container is True
