@@ -75,7 +75,7 @@
 
     - name: Set the full image name
       set_fact:
-        l_docker_image: "{{ l_docker_image_prepend }}container-engine:latest"
+        l_docker_image: "brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/rhel7/container-engine:latest"
 
 - name: Pre-pull Container Enginer System Container image
   command: "atomic pull --storage ostree {{ l_docker_image }}"
@@ -123,7 +123,7 @@
 # Enable and start the container-engine service
 - name: Start the Container Engine service
   systemd:
-    name: "{{ openshift.docker.service_name }}"
+    name: container-engine
     enabled: yes
     state: started
     daemon_reload: yes
