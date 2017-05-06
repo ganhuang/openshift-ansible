@@ -114,6 +114,12 @@
     dest: "{{ docker_systemd_dir }}/custom.conf"
     src: systemcontainercustom.conf.j2
 
+- set_fact:
+    l_docker_insecure_registries: "{{ docker_insecure_registries | default(None, true) | to_json }}"
+    l_docker_log_options: "{{ docker_log_options | default(None, true) | to_json }}"
+    l_docker_additional_registries: "{{ docker_additional_registries | default(None, true) | to_json }}"
+    l_docker_blocked_registries: "{{ docker_blocked_registries | default(None, true) | to_json }}"
+
 # Configure container-engine using the daemon.json file
 - name: Configure Container Engine
   template:
