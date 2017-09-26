@@ -122,6 +122,14 @@
     - system_images_registry is not defined
     - openshift_deployment_type == "origin"
 
+  - name: Internal hostname list for NO_PROXY
+    set_fact:
+      openshift_no_proxy_internal_hostnames: "{{ hostvars | oo_select_keys(groups['oo_nodes_to_config']
+                                                    | union(groups['oo_masters_to_config'])
+                                                    | union(groups['oo_etcd_to_config'] | default([])))
+                                                | oo_collect('openshift.common.hostname') | default([]) | join (',')
+                                                }}"
+
   - name: Gather Cluster facts and set is_containerized if needed
     openshift_facts:
       role: common
