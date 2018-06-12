@@ -1,0 +1,6 @@
+---
+- name: Setup node-group configmaps
+  hosts: oo_first_master
+  tasks:
+  - import_role:
+      name: openshift_node_group
